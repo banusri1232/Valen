@@ -255,7 +255,7 @@
     const backBtn = document.getElementById('backBtn');
 
     const song = document.getElementById('song');
-    const muteBtn = document.getElementById('muteBtn');
+    
     const muteBtn2 = document.getElementById('muteBtn2');
 
     function setMuteButtonText(btn){
@@ -275,11 +275,11 @@
         // Wenn Browser blockt: passiert meist beim ersten Versuch ohne echten Klick
         alert("Musik konnte nicht gestartet werden. Tippe nochmal auf den Button.");
       }
-      setMuteButtonText(muteBtn);
+      
       setMuteButtonText(muteBtn2);
     }
 
-    muteBtn.addEventListener('click', toggleMusic);
+    
     muteBtn2.addEventListener('click', toggleMusic);
 
     // Slideshow logic
@@ -336,8 +336,9 @@
     });
 
     // Initial button state
-    setMuteButtonText(muteBtn);
+    
     setMuteButtonText(muteBtn2);
   </script>
 </body>
 </html>
+
