@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💘 Valentine?</title>
+  <style>
+    :root{
+      --bg1:#ffd1dc;
+      --bg2:#fff0f5;
+      --card:#ffffffcc;
+      --text:#2b2b2b;
+      --accent:#ff2d55;
+      --accent2:#ff5a7a;
+      --shadow: 0 10px 30px rgba(0,0,0,.12);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 30% 10%, var(--bg2), transparent),
+                  radial-gradient(900px 600px at 80% 40%, #ffe3ea, transparent),
+                  linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card{
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    h1{
+      margin: 6px 0 8px;
+      font-size: clamp(26px, 4.8vw, 42px);
+      line-height: 1.1;
+      letter-spacing: .2px;
+      text-align:center;
+    }
+
+    .sub{
+      text-align:center;
+      margin: 0 0 14px;
+      opacity: .85;
+      font-size: clamp(14px, 2.8vw, 16px);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .img{
+      width:100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
+      object-fit: cover;
+      box-shadow: 0 8px 18px rgba(0,0,0,.12);
+      border: 1px solid rgba(255,255,255,.8);
+      background: rgba(255,255,255,.35);
+    }
+
+    .actions{
+      display:flex;
+      gap: 10px;
+      justify-content:center;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    button{
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 18px rgba(255,45,85,.18);
+      transition: transform .12s ease, filter .12s ease;
+      user-select:none;
+    }
+    button:active{ transform: scale(.98); }
+
+    .btn-yes{
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+    }
+    .btn-mute{
+      background: rgba(255,255,255,.75);
+      color: #333;
+      box-shadow: 0 10px 18px rgba(0,0,0,.10);
+    }
+
+    .hint{
+      text-align:center;
+      font-size: 13px;
+      opacity:.85;
+      margin-top: 10px;
+    }
+
+    /* Page sections */
+    .page{ display:none; }
+    .page.active{ display:block; }
+
+    /* Slideshow page */
+    .slideshow-wrap{
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .big{
+      width:100%;
+      max-width: 520px;
+      aspect-ratio: 4 / 5;
+      border-radius: 26px;
+      object-fit: cover;
+      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.75);
+      background: rgba(255,255,255,.35);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(255,255,255,.85);
+      box-shadow: 0 10px 18px rgba(0,0,0,.10);
+      font-weight: 650;
+    }
+
+    /* Floating hearts */
+    .hearts{
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow:hidden;
+    }
+    .heart{
+      position:absolute;
+      bottom: -40px;
+      font-size: 18px;
+      opacity: .85;
+      animation: floatUp linear infinite;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,.12));
+    }
+    @keyframes floatUp{
+      from { transform: translateY(0) translateX(0) rotate(0deg); opacity: .0; }
+      10%  { opacity: .85; }
+      to   { transform: translateY(-120vh) translateX(40px) rotate(20deg); opacity: 0; }
+    }
+
+    /* Mobile tweaks */
+    @media (min-width: 700px){
+      .grid{ gap: 12px; }
+      .card{ padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hearts" id="hearts"></div>
+
+  <div class="wrap">
+
+    <!-- PAGE 1 -->
+    <section class="page active" id="page1">
+      <div class="card">
+        <h1>Willst du mein Valentinsdate sein? 💘</h1>
+        <p class="sub">Ich hab da was kleines für dich gemacht…</p>
+
+        <div class="grid">
+          <img class="img" src="bilder/bild1.jpeg" alt="Bild 1">
+          <img class="img" src="bilder/bild2.jpeg" alt="Bild 2">
+          <img class="img" src="bilder/bild3.jpeg" alt="Bild 3">
+          <img class="img" src="bilder/bild4.jpeg" alt="Bild 4">
+        </div>
+
+        <div class="actions">
+          <button class="btn-yes" id="yesBtn">❤️ Ja ❤️</button>
+          
+        </div>
+
+        <div class="hint">
+          Hinweis: Musik startet erst nach einem Klick (Handy-Browser blocken Autoplay).
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section class="page" id="page2">
+      <div class="card">
+        <h1>Yesss! 😍💞</h1>
+        <p class="sub">Du bist mein Lieblingsmensch.</p>
+
+        <div class="slideshow-wrap">
+          <div class="badge">📸 Unsere Momente · alle 3 Sekunden</div>
+          <img class="big" id="slideImg" src="bilder/slide1.jpg" alt="Slideshow">
+          <div class="actions">
+            <button class="btn-mute" id="backBtn">⬅ Zurück</button>
+            <button class="btn-mute" id="muteBtn2" aria-pressed="false">🔊 Musik an</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <audio id="song" src="musik/lied.mp3" preload="auto" loop></audio>
+  </div>
+
+  <script>
+    // Floating hearts generator
+    (function makeHearts(){
+      const wrap = document.getElementById('hearts');
+      const hearts = ["❤️","💖","💘","💕","💗"];
+      const count = 22;
+
+      for(let i=0;i<count;i++){
+        const el = document.createElement('div');
+        el.className = 'heart';
+        el.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+        el.style.left = Math.random()*100 + "vw";
+        el.style.fontSize = (14 + Math.random()*18) + "px";
+        el.style.animationDuration = (6 + Math.random()*8) + "s";
+        el.style.animationDelay = (-Math.random()*10) + "s";
+        wrap.appendChild(el);
+      }
+    })();
+
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+
+    const yesBtn = document.getElementById('yesBtn');
+    const backBtn = document.getElementById('backBtn');
+
+    const song = document.getElementById('song');
+    const muteBtn = document.getElementById('muteBtn');
+    const muteBtn2 = document.getElementById('muteBtn2');
+
+    function setMuteButtonText(btn){
+      const isPlaying = !song.paused;
+      btn.textContent = isPlaying ? "🔇 Musik aus" : "🔊 Musik an";
+      btn.setAttribute("aria-pressed", isPlaying ? "true" : "false");
+    }
+
+    async function toggleMusic(){
+      try{
+        if(song.paused){
+          await song.play();
+        } else {
+          song.pause();
+        }
+      } catch(e){
+        // Wenn Browser blockt: passiert meist beim ersten Versuch ohne echten Klick
+        alert("Musik konnte nicht gestartet werden. Tippe nochmal auf den Button.");
+      }
+      setMuteButtonText(muteBtn);
+      setMuteButtonText(muteBtn2);
+    }
+
+    muteBtn.addEventListener('click', toggleMusic);
+    muteBtn2.addEventListener('click', toggleMusic);
+
+    // Slideshow logic
+    const slideImg = document.getElementById('slideImg');
+    const slides = [
+      "bilder/slide1.jpg",
+      "bilder/slide2.jpg",
+      "bilder/slide3.jpg",
+      "bilder/slide4.jpg",
+      "bilder/slide5.jpg"
+    ];
+    let slideIndex = 0;
+    let slideTimer = null;
+
+    function startSlideshow(){
+      stopSlideshow();
+      slideTimer = setInterval(() => {
+        slideIndex = (slideIndex + 1) % slides.length;
+        slideImg.src = slides[slideIndex];
+      }, 3000);
+    }
+
+    function stopSlideshow(){
+      if(slideTimer) clearInterval(slideTimer);
+      slideTimer = null;
+    }
+
+    // Page switch
+    yesBtn.addEventListener('click', async () => {
+  try {
+    song.currentTime = 0;   // startet von vorne
+    song.volume = 0.9;      // optional
+    await song.play();      // Musik startet automatisch nach "Ja"
+  } catch (e) {
+    // Falls der Browser trotzdem blockt (selten): dann brauchst du einen Fallback-Button
+    alert("Musik konnte nicht automatisch starten. Tippe einmal auf 'Musik an'.");
+  }
+
+  page1.classList.remove('active');
+  page2.classList.add('active');
+
+  slideIndex = 0;
+  slideImg.src = slides[0];
+  startSlideshow();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+
+    backBtn.addEventListener('click', () => {
+      stopSlideshow();
+      page2.classList.remove('active');
+      page1.classList.add('active');
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+
+    // Initial button state
+    setMuteButtonText(muteBtn);
+    setMuteButtonText(muteBtn2);
+  </script>
+</body>
+</html>
